@@ -27,7 +27,7 @@
         </activity>
         <activity android:name=".GameActivity"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-                  android:configChanges="orientation">
+                  android:configChanges="orientation|screenSize">
 
         </activity>
     </application>
