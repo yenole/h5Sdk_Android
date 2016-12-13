@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.PowerManager;
 import android.view.ViewGroup;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import android.widget.FrameLayout;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -49,6 +51,13 @@ public class H5Sdk {
         if (null != activity) {
             if(null==webView){
                 webView = new WebView(this.activity);
+                webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+                webView.getSettings().setJavaScriptEnabled(true);
+                webView.getSettings().setDomStorageEnabled(true);
+                webView.getSettings().setDatabaseEnabled(true);
+                webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                webView.getSettings().setAppCacheEnabled(true);
+                webView.setWebChromeClient(new WebChromeClient());
                 webView.setWebViewClient(new WebViewClient() {
                     @Override
                     public void onPageFinished(WebView webView, String s) {
@@ -68,9 +77,6 @@ public class H5Sdk {
                 });
             }
             webView.setBackgroundColor(backgroundColor);
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.getSettings().setDomStorageEnabled(true);
-
             webView.loadUrl(url);
             FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(width, height);
             flp.leftMargin = x;
